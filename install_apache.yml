@@ -3,27 +3,19 @@
 - hosts: all
   become: true
   tasks:
-    - name: update repo Ubuntu
-      apt:
-        update_cache: yes
-      when: ansible_distribution == "Ubuntu"
-
     - name: install apache2 and PHP support for ubuntu
       apt:
+        update_cache: yes
         name: 
         - apache2
         - libapache2-mod-php
         state: latest
       when: ansible_distribution == "Ubuntu"
 
-    - name: update repo CentOS
-      dnf:
-        update_cache: yes
-      when: ansible_distribution == "CentOS"
-
     - name: install apache2 and PHP support for CentOS
       dnf:
-        name: 
+        update_cache: yes
+        name:
         - httpd
         - php
         state: latest
