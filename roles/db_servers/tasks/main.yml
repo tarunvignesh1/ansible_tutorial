@@ -1,7 +1,15 @@
-- name: install mariadb (CentOS)
-  tags: db,mariadb,centos
+- name: install redis (CentOS)
+  tags: db,redis,centos
   package:
       name:
-      - mariadb
+      - redis
       state: latest
       when: ansible_distribution == "CentOS"
+
+- name: install redis (Ubuntu)
+  tags: db,redis,ubuntu
+  apt:
+    name:
+    - redis
+    state: latest
+    when: ansible_distribution == "Ubuntu"
