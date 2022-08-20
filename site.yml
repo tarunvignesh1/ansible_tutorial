@@ -3,29 +3,18 @@
 - hosts: all
   become: true
   pre_tasks:
-    - name: install updates (Ubuntu)
+    - name: update repo cache (Ubuntu)
       tags: always
       apt:
-        upgrade: yes
         update_cache: yes
+      changed_when: false
       when: ansible_distribution == "Ubuntu"
-    - name: install updates (CentOS)
+    - name: update repo cache (CentOS)
       tags: always
       package:
-        update_only: yes
         update_cache: yes
+      changed_when: false
       when: ansible_distribution == "CentOS"
-
-# adding users 
-
-- hosts: all
-  become: true
-  tasks:
-    - name: adding user simone
-      tags: always
-      user:
-        name: simone
-        groups: root
 
 # adding ssh key and sudoers permission to simone
     - name: add ssh key to simone
@@ -34,14 +23,6 @@
         user: simone
         key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC69gjok+Cm+2ABD5LJ9/dBsfHntYxYsBJAYrJKoOPAiE/jIvclA+ZApYLWMIWl8RGWyLxSLj8xDbCCqXuBpnyMEI68V23ngWVtg5lVzwKWToN0diT/dGUWi7KNNgrpLh9D/o+bH7wtWn2+ejDBwDKjN5+tFfuG15+dKUkFwc3TeaPfb4e9BfrqOq34XCCdpjKb3QgaBUL8dz7SUf/6qJRhrgi/hCXM41vEB2ZGm33L+xiuicaJzTR9ak8A8U2d+tuKzKFZ5UsEoS/nlG0u+Igb/E2zTZGyQ/7kn0h21eGULVgqkY1D9xa75Oseu31YbVkRwGr2TsJ9M2ghiQ9vKUSS+IP3JfXdK7RzTI4Hga7Hgc/oFpPuEac3wAXOMMNS3FU6GXrHtjZCD53P/FfNaK7o5Q5CqA1UtrHLcnYsNF8QH7aqsDoQ9cP7B7MMyax/NfPI+1X8AD4yMuoWpcINrNcrj1S1TUkKSwKePqWP06Jw73I5WIvGS2fVAarKH4luXVs= ansible"
 
-    - name: add sudoers file for simone
-      tags: always
-      copy:
-        src: sudoer_simone
-        dest: /etc/sudoers.d/simone
-        owner: root
-        group: root
-        
 
 - hosts: web_servers
   become: true
