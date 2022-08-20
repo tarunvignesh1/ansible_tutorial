@@ -1,6 +1,6 @@
 - name: install mariadb (CentOS)
   tags: db,mariadb,centos
-  dnf:
+  package:
       name:
       - mariadb
       state: latest
