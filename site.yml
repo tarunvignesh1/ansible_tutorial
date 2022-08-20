@@ -30,7 +30,7 @@
 
     - name: install apache and php for CentOS web_servers
       tags: httpd,apache,centos
-      dnf:
+      package:
         name:
         - httpd
         - php
