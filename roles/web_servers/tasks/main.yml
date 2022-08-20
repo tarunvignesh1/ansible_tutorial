@@ -1,6 +1,6 @@
  - name: install httpd package (CentOS)
    tags: apache,centos,httpd
-   dnf:
+   package:
      name:
        - httpd
        - php
