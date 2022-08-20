@@ -37,6 +37,13 @@
         state: latest
       when: ansible_distribution == "CentOS"
 
+    - name: start httpd service
+      tags: apache,centos,httpd
+      service:
+        name: httpd
+        state: started
+      when: ansible_distribution == "CentOS"
+
     - name: copy html file for site
       tags: apache,apache2,httpd
       copy:
