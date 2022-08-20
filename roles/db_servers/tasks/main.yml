@@ -1,6 +1,6 @@
 - name: install redis (CentOS)
   tags: db,mariadb,centos
-  package:
+  dnf:
       name:
       - mariadb
       state: latest
