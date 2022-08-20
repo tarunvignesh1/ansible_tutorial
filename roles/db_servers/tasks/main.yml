@@ -1,11 +1,3 @@
-- name: install redis (CentOS)
-  tags: db,redis,centos
-  package:
-      name:
-      - redis
-      state: latest
-      when: ansible_distribution == "CentOS"
-
 - name: install redis (Ubuntu)
   tags: db,redis,ubuntu
   apt:
