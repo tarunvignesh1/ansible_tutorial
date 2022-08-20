@@ -1,3 +1,4 @@
+deprecation_warnings=False
 [web_servers]
 10.128.0.4
 10.128.0.2
